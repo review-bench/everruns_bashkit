@@ -15,6 +15,7 @@ const evalSnapshot = {
   date: "2026-02-28",
   href: "https://github.com/everruns/bashkit/blob/main/crates/bashkit-eval/README.md",
 };
+const benchesHref = "/benches";
 
 const heroStats = [
   { label: "Built-in commands", value: "160", href: "/builtins" },
@@ -258,6 +259,12 @@ const resources = [
     detail: "268 documented threat cases across parser, VFS, network, and runtimes.",
     href: "https://github.com/everruns/bashkit/blob/main/specs/threat-model.md",
     cta: "Security spec",
+  },
+  {
+    title: "Benches history",
+    detail: "Interactive trends across benchmarks, criterion benches, and evals.",
+    href: benchesHref,
+    cta: "Benches",
   },
   {
     title: "CLI reference",
@@ -562,6 +569,9 @@ async fn main() -> anyhow::Result<()> {
           </a>{" "}
           run:
         </p>
+        <a href={benchesHref} class="atlas-inline-link">
+          Explore historical trends
+        </a>
       </div>
 
       <article class="atlas-panel atlas-table-panel">
@@ -604,8 +614,8 @@ async fn main() -> anyhow::Result<()> {
             <a
               href={item.href}
               class="atlas-panel atlas-card atlas-resource-card"
-              target="_blank"
-              rel="noopener noreferrer"
+              target={item.href.startsWith("http") ? "_blank" : undefined}
+              rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
             >
               <span class="atlas-eyebrow">{item.cta}</span>
               <h3>{item.title}</h3>
